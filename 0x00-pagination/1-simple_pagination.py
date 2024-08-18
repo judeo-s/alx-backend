@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
 """
-
+This module implements a simple pagination class.
 """
 import csv
 import math
-from typing import List
-
-
-def index_range(page: int, page_size: int) -> tuple:
-    """
-    A function that takes two integers and returns tuple of size two containing
-    a start index and an end index.
-    """
-    end = page * page_size
-    start = end - page_size
-    return (start, end)
+from typing import List, Tuple
 
 
 class Server:
-    """Server class to paginate a database of popular baby names.
+    """
+    Server class to paginate a database of popular baby names.
     """
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
         self.__dataset = None
+
+    @staticmethod
+    def index_range(page: int, page_size: int) -> Tuple[int, int]:
+        """
+        A function that takes two integers and returns tuple of size two
+        containing a start index and an end index.
+        """
+        end = page * page_size
+        start = end - page_size
+        return (start, end)
 
     def dataset(self) -> List[List]:
         """Cached dataset
@@ -47,7 +48,7 @@ class Server:
         assert page_size > 0
 
         dataset = self.dataset()
-        start, end = index_range(page, page_size)
+        start, end = Server.index_range(page, page_size)
         if end <= len(dataset):
             return dataset[start:end]
         else:
