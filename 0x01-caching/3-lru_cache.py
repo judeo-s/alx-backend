@@ -45,7 +45,7 @@ class LRUCache(BaseCaching):
             if key in LRUCache.__table.keys():
                 pass
             else:
-                if len(LRUCache.__table) == BaseCaching.MAX_ITEMS:
+                if len(LRUCache.__table) >= BaseCaching.MAX_ITEMS:
                     l_key = self.find_least()
                     LRUCache.__table.pop(l_key)
                     self.cache_data.pop(l_key)
