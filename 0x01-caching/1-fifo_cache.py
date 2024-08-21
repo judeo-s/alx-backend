@@ -34,7 +34,7 @@ class FIFOCache(BaseCaching):
                 self.cache_data[key] = item
 
     def get(self, key):
-        """ 
+        """
         Get an item from cache
         """
         if key and key in self.cache_data.keys():
