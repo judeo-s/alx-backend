@@ -16,11 +16,12 @@ class Config:
         if app:
             app.config["BABEL_DEFAULT_LOCALE"] = Config.LANGUAGES[0]
             app.config["BABEL_DEFAULT_TIMEZONE"] = "UTC"
+        return app
 
 
 app = Flask(__name__)
 babel = Babel(app)
-Config.set_config(app)
+app = Config.set_config(app)
 
 
 @app.route("/")
